@@ -9,7 +9,7 @@ const accessToken = process.env.PRISMIC_ACCESS_TOKEN
 const routes = [
   {
     type: 'page',
-    path: '/:uid'
+    path: '/about'
   }
 ]
 
