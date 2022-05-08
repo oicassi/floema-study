@@ -8,12 +8,12 @@ const accessToken = process.env.PRISMIC_ACCESS_TOKEN
 
 const routes = [
   {
-    type: 'page',
+    type: 'about',
     path: '/about'
   }
 ]
 
-export const client = prismic.createClient(repoName, {
+export const prismicClient = prismic.createClient(repoName, {
   fetch,
   accessToken,
   routes
