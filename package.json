@@ -1,6 +1,7 @@
 {
   "name": "floema-study",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "frontend:build": "webpack --progress --config webpack.config.build.js",
     "frontend:development": "webpack serve --progress --config webpack.config.development.js",
@@ -42,8 +43,11 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "@prismicio/client": "^6.4.3",
+    "@prismicio/helpers": "^2.3.0",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
+    "node-fetch": "^3.2.4",
     "pug": "^3.0.2"
   }
 }
