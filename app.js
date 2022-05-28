@@ -16,7 +16,7 @@ app.set('view engine', 'pug')
 
 app.use((req, res, next) => {
   res.locals.ctx = {
-    prismicHelpers
+    prismicHelpers,
   }
   next()
 })
@@ -27,13 +27,15 @@ app.get('/', (req, res) => {
 
 app.get('/about', async (req, res) => {
   try {
-    const { results: [meta, about] } = await prismicClient.get({
-      predicates: prismic.predicate.any('document.type', ['meta', 'about'])
+    const {
+      results: [meta, about],
+    } = await prismicClient.get({
+      predicates: prismic.predicate.any('document.type', ['meta', 'about']),
     })
 
     res.render('pages/about', {
       meta,
-      about
+      about,
     })
   } catch (error) {
     console.log('error navigating to about', error)
