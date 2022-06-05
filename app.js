@@ -46,8 +46,23 @@ app.get('/collections', (req, res) => {
   res.render('pages/collection')
 })
 
-app.get('/detail/:id', (req, res) => {
-  res.render('pages/detail')
+app.get('/detail/:uid', async (req, res) => {
+  const uid = req.params.uid
+
+  try {
+    const promises = [
+      prismicClient.getSingle('meta'),
+      prismicClient.getByUID('product', uid, { fetchLinks: 'collection.title' }),
+    ]
+    const [meta, product] = await Promise.all(promises)
+
+    res.render('pages/detail', {
+      meta,
+      product,
+    })
+  } catch (error) {
+    console.log('error navigating to product', error)
+  }
 })
 
 app.listen(port, () => {
