@@ -38,12 +38,31 @@ app.get('/about', async (req, res) => {
       about,
     })
   } catch (error) {
-    console.log('error navigating to about', error)
+    console.log('error fetching data for about page', error)
   }
 })
 
-app.get('/collections', (req, res) => {
-  res.render('pages/collection')
+app.get('/collections', async (req, res) => {
+  // Example using predicates (using predicate it's possible to have pagination)
+  // prismicClient.get({ predicates: prismic.predicate.at('document.type', 'collection') }),
+  try {
+    const promises = [
+      prismicClient.getSingle('meta'),
+      prismicClient.getAllByType('collection', { fetchLinks: ['product.title'] }),
+    ]
+    const [meta, collections] = await Promise.all(promises)
+    console.log('meta:', meta)
+    console.log('--------')
+    console.log('collections:', collections)
+    console.log('--------')
+    console.log('products:', collections[3].data.products[0].products_product.data)
+    res.render('pages/collections', {
+      meta,
+      collections,
+    })
+  } catch (error) {
+    console.log('error fetching data for collection page', error)
+  }
 })
 
 app.get('/detail/:uid', async (req, res) => {
@@ -61,7 +80,7 @@ app.get('/detail/:uid', async (req, res) => {
       product,
     })
   } catch (error) {
-    console.log('error navigating to product', error)
+    console.log('error fetching data for detail page', error)
   }
 })
 
