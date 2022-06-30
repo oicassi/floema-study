@@ -48,16 +48,13 @@ app.get('/collections', async (req, res) => {
   try {
     const promises = [
       prismicClient.getSingle('meta'),
-      prismicClient.getAllByType('collection', { fetchLinks: ['product.title'] }),
+      prismicClient.getSingle('home'),
+      prismicClient.getAllByType('collection', { fetchLinks: ['product.image'] }),
     ]
-    const [meta, collections] = await Promise.all(promises)
-    console.log('meta:', meta)
-    console.log('--------')
-    console.log('collections:', collections)
-    console.log('--------')
-    console.log('products:', collections[3].data.products[0].products_product.data)
+    const [meta, home, collections] = await Promise.all(promises)
     res.render('pages/collections', {
       meta,
+      home,
       collections,
     })
   } catch (error) {
