@@ -33,9 +33,8 @@ app.use(methodOverride())
 
 app.get('/', async (req, res) => {
   try {
-    const defaultData = await getDefaultData()
-    const promises = [prismicClient.getSingle('home'), prismicClient.getAllByType('collection')]
-    const [home, collections] = await Promise.all(promises)
+    const promises = [getDefaultData(), prismicClient.getSingle('home'), prismicClient.getAllByType('collection')]
+    const [defaultData, home, collections] = await Promise.all(promises)
 
     res.render('pages/home', {
       ...defaultData,
@@ -48,6 +47,8 @@ app.get('/', async (req, res) => {
 })
 
 app.get('/about', async (req, res) => {
+  // Example using predicates (using predicate it's possible to have pagination)
+  // prismicClient.get({ predicates: prismic.predicate.at('document.type', 'collection') }),
   try {
     const defaultData = await getDefaultData()
     const {
@@ -66,17 +67,13 @@ app.get('/about', async (req, res) => {
 })
 
 app.get('/collections', async (req, res) => {
-  // Example using predicates (using predicate it's possible to have pagination)
-  // prismicClient.get({ predicates: prismic.predicate.at('document.type', 'collection') }),
   try {
-    const defaultData = await getDefaultData()
-    console.log('defaultData')
-    console.log(defaultData)
     const promises = [
+      getDefaultData(),
       prismicClient.getSingle('home'),
       prismicClient.getAllByType('collection', { fetchLinks: ['product.image'] }),
     ]
-    const [home, collections] = await Promise.all(promises)
+    const [defaultData, home, collections] = await Promise.all(promises)
     res.render('pages/collections', {
       ...defaultData,
       home,
