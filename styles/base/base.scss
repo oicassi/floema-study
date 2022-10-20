@@ -3,6 +3,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+:root {
+  font-size: 10px;
+}
+
 body {
   @extend %description-16;
 

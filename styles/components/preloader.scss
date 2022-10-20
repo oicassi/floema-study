@@ -1,6 +1,20 @@
 .preloader {
+  @extend %cover;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 .preloader__text {
+  @extend %title-53;
+
+  max-width: 66rem;
+  white-space: pre-wrap;
 }
 .preloader__number {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
