@@ -1,34 +1,31 @@
-import path from 'path'
-import webpack from 'webpack'
-import { CleanWebpackPlugin } from 'clean-webpack-plugin'
-import CopyWebpackPlugin from 'copy-webpack-plugin'
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-import ImageMinimizerPlugin from 'image-minimizer-webpack-plugin'
-import TerserPlugin from 'terser-webpack-plugin'
-import { fileURLToPath } from 'url'
+import path from 'path';
+import webpack from 'webpack';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import ImageMinimizerPlugin from 'image-minimizer-webpack-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
+import { fileURLToPath } from 'url';
 
-const IS_DEVELOPMENT = process.env.NODE_ENV === 'dev'
+const IS_DEVELOPMENT = process.env.NODE_ENV === 'dev';
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-const dirApp = path.join(__dirname, 'app')
-const dirStyles = path.join(__dirname, 'styles')
-const dirNode = 'node_modules'
+const dirApp = path.join(__dirname, 'app');
+const dirStyles = path.join(__dirname, 'styles');
+const dirNode = 'node_modules';
 
 const config = {
-  entry: [
-    path.join(dirApp, 'index.js'),
-    path.join(dirStyles, 'index.scss')
-  ],
+  entry: [path.join(dirApp, 'index.js'), path.join(dirStyles, 'index.scss')],
 
   resolve: {
-    modules: [dirApp, dirNode]
+    modules: [dirApp, dirNode],
   },
 
   plugins: [
     new webpack.DefinePlugin({
-      IS_DEVELOPMENT
+      IS_DEVELOPMENT,
     }),
 
     new CleanWebpackPlugin(),
@@ -38,15 +35,15 @@ const config = {
         {
           from: './shared',
           to: '',
-          noErrorOnMissing: true
-        }
-      ]
+          noErrorOnMissing: true,
+        },
+      ],
     }),
 
     new MiniCssExtractPlugin({
       filename: '[name].css',
-      chunkFilename: '[id].css'
-    })
+      chunkFilename: '[id].css',
+    }),
   ],
 
   module: {
@@ -54,8 +51,8 @@ const config = {
       {
         test: /\.js$/,
         use: {
-          loader: 'babel-loader'
-        }
+          loader: 'babel-loader',
+        },
       },
 
       {
@@ -64,49 +61,49 @@ const config = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              publicPath: ''
-            }
+              publicPath: '',
+            },
           },
           {
-            loader: 'css-loader'
+            loader: 'css-loader',
           },
           {
-            loader: 'postcss-loader'
+            loader: 'postcss-loader',
           },
           {
-            loader: 'sass-loader'
-          }
-        ]
+            loader: 'sass-loader',
+          },
+        ],
       },
 
       {
-        test: /\.(jpe?g|png|gif|svg|woff2?|fnt|webp)$/,
+        test: /\.(jpe?g|png|gif|svg|fnt|webp)$/,
         loader: 'file-loader',
         options: {
-          name (file) {
-            return '[hash].[ext]'
-          }
-        }
+          name(file) {
+            return '[hash].[ext]';
+          },
+        },
       },
 
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         type: 'asset',
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
 
       {
         test: /\.(glsl|frag|vert)$/,
         loader: 'raw-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
 
       {
         test: /\.(gsls|frag|vert)$/,
         loader: 'glslify-loader',
-        exclude: /node_modules/
-      }
-    ]
+        exclude: /node_modules/,
+      },
+    ],
   },
 
   optimization: {
@@ -119,14 +116,14 @@ const config = {
             plugins: [
               ['gifsicle', { interlaced: true }],
               ['jpegtran', { progressive: true }],
-              ['optipng', { optimizationLevel: 7 }]
-            ]
-          }
-        }
+              ['optipng', { optimizationLevel: 7 }],
+            ],
+          },
+        },
       }),
-      new TerserPlugin()
-    ]
-  }
-}
+      new TerserPlugin(),
+    ],
+  },
+};
 
-export default config
+export default config;

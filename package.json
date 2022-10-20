@@ -31,6 +31,7 @@
     "imagemin-gifsicle": "^7.0.0",
     "imagemin-jpegtran": "^7.0.0",
     "imagemin-optipng": "^8.0.0",
+    "include-media": "^1.4.10",
     "mini-css-extract-plugin": "^2.6.0",
     "nodemon": "^2.0.15",
     "postcss-loader": "^6.2.1",
