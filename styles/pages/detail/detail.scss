@@ -1,16 +1,35 @@
 .detail {
+  @extend %cover;
+  @extend %center;
 }
+
 .detail__wrapper {
+  align-items: center;
+  display: flex;
 }
+
 .detail__media {
+  position: relative;
+  width: 55.4rem;
+  height: 78.2rem;
 }
+
 .detail__media__image {
+  @extend %cover;
+  object-fit: cover;
 }
+
 .detail__information {
 }
+
 .detail__information__collection {
+  @extend %description-12;
+
+  text-transform: uppercase;
 }
+
 .detail__information__title {
+  @extend %title-120;
 }
 .detail__information__content {
 }

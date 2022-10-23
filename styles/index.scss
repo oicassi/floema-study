@@ -1,15 +1,20 @@
+@import './base/reset';
+
 @import './utils/variables';
 @import './utils/functions';
 @import './utils/mixins';
 @import './utils/vendors';
 @import './utils/responsive.scss';
 
-@import './mixins/titles';
 @import './mixins/descriptions';
+@import './mixins/titles';
 
 @import './base/fonts';
-@import './base/reset';
 @import './base/base';
+
+@import './components/preloader';
+
+@import './layout/navigation';
 
 @import './pages/about/about';
 @import './pages/about/content';
@@ -21,7 +26,3 @@
 @import './pages/detail/detail';
 
 @import './pages/home/home';
-
-@import './components/preloader';
-
-@import './layout/navigation';

@@ -3,8 +3,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-:root {
-  font-size: 10px;
+html {
+  font-size: calc(100vw / 1920 * 10);
 }
 
 body {
