@@ -1,10 +1,14 @@
-* {
+*,
+*::after,
+*::before {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 }
 
 html {
   font-size: calc(100vw / 1920 * 10);
+  line-height: 1;
 }
 
 body {
@@ -12,4 +16,10 @@ body {
 
   font-family: $font-suisse-bp;
   font-weight: 300;
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+  color: inherit;
 }
