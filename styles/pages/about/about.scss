@@ -9,7 +9,8 @@
 .about__title {
   @extend %title-100;
 
-  max-width: 107.4rem;
+  max-width: 124rem;
   text-align: center;
   margin: 0 auto;
+  white-space: pre-wrap;
 }

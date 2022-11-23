@@ -1,6 +1,15 @@
 .about__gallery {
   height: 58.6rem;
+  margin: 20rem 0;
   position: relative;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .about__gallery__wrapper {
@@ -20,5 +29,6 @@
 
 .about__gallery__media__image {
   @extend %cover;
+
   object-fit: cover;
 }
