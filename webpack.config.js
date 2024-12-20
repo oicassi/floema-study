@@ -1,3 +1,5 @@
+// this is the standard build process that is going to be shared between development and build
+
 import path from 'path';
 import webpack from 'webpack';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
